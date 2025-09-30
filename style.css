@@ -1,0 +1,157 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #4E3629; /* Cor marrom amadeirado */
+  color: #F2D97D; /* Texto dourado suave */
+  line-height: 1.6;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-image: url('img/wood-texture.jpg'); /* Fundo amadeirado */
+  background-size: cover;
+  background-position: center;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 350px;
+  perspective: 1000px;
+  border-radius: 8px;
+}
+
+.card-inner {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  border-radius: 8px;
+}
+
+.card:hover .card-inner {
+  transform: rotateY(180deg);
+}
+
+.card-front {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background-color: #2E1B15;
+  border-radius: 8px;
+  padding: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.card-header h1 {
+  font-size: 1.8rem;
+  text-align: center;
+  color: #F2D97D;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.card-image {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hover-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card-image:hover .hover-overlay {
+  opacity: 1;
+}
+
+.card-front h2 {
+  font-size: 1.4rem;
+  color: #F2D97D;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.card-front p {
+  font-size: 1rem;
+  color: #D6D2A1;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  background-color: #1A0D06; /* Cor de fundo mais escura */
+  color: #F2D97D;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.card-back h2 {
+  font-size: 1.6rem;
+  color: #F2D97D;
+  margin-bottom: 1rem;
+}
+
+.card-back p {
+  font-size: 1rem;
+  color: #D6D2A1;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+.card-header, .card-front h2 {
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+  .card {
+    height: 300px;
+  }
+}
