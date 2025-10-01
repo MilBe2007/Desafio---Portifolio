@@ -85,11 +85,15 @@ header p {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
   padding: 40px;
+  justify-items: center;
+  align-items: center;
 }
 
-/* ===== CARDS (mesmos estilos que já passamos antes) ===== */
+/* ===== CARDS ===== */
 .card {
-  perspective: 1000px;
+  perspective: 1200px;
+  width: 100%;
+  max-width: 300px;
 }
 
 .card-inner {
@@ -97,7 +101,7 @@ header p {
   width: 100%;
   height: 400px;
   transform-style: preserve-3d;
-  transition: transform 0.8s;
+  transition: transform 0.8s ease-in-out;
   cursor: pointer;
 }
 
@@ -105,6 +109,7 @@ header p {
   transform: rotateY(180deg);
 }
 
+/* ===== CARD FRONT & BACK ===== */
 .card-front, .card-back {
   position: absolute;
   width: 100%;
@@ -112,24 +117,47 @@ header p {
   backface-visibility: hidden;
   border-radius: 16px;
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(14px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-  padding: 20px;
+  background: linear-gradient(135deg, #ff004c, #ff66c4, #00ffe0);
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite;
+  box-shadow:
+    0 0 20px rgba(255, 0, 76, 0.8),
+    0 10px 30px rgba(0,0,0,0.6),
+    inset 0 0 15px rgba(255,255,255,0.1);
+  padding: 0;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  color: white;
+  text-align: center;
+  border: 2px solid rgba(255,255,255,0.1);
+  transition: box-shadow 0.3s ease-in-out, border 0.3s ease-in-out;
 }
 
-.card-front h2 {
-  font-size: 1.3rem;
-  color: #ff66c4;
-  margin-bottom: 10px;
+.card:hover .card-front,
+.card:hover .card-back {
+  box-shadow:
+    0 0 40px #ff004c,
+    0 0 60px #ff66c4,
+    0 0 80px #00ffe0,
+    0 10px 50px rgba(0,0,0,0.7),
+    inset 0 0 30px rgba(255,255,255,0.2);
+  border: 2px solid #fff;
 }
 
+/* BACK */
+.card-back {
+  transform: rotateY(180deg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* ===== CARD IMAGE ===== */
 .card-image {
   flex: 1;
-  margin: 15px 0;
+  margin: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,18 +165,49 @@ header p {
 
 .card-image img {
   width: 100%;
-  height: 180px;
+  height: 100%;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 0;
 }
 
-.card-back {
-  transform: rotateY(180deg);
-  text-align: center;
+/* ===== CARD TITLES ===== */
+.card-front h2 {
+  font-size: 1.6rem;
+  margin: 15px 0;
+  color: #fff;
+  text-shadow: 0 0 8px #ff004c, 0 0 16px #ff66c4, 0 0 32px #00ffe0;
+  transition: text-shadow 0.3s ease-in-out;
 }
 
 .card-back h2 {
   font-size: 1.4rem;
-  color: #00ffe0;
   margin-bottom: 15px;
+  text-shadow: 0 0 10px #00ffe0, 0 0 20px #ff66c4;
+}
+
+/* ===== CARD BACK TEXT ===== */
+.card-back p {
+  font-size: 0.95rem;
+  line-height: 1.4rem;
+  padding: 0 10px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: linear-gradient(90deg, #ff004c, #ff66c4, #00ffe0, #ff004c);
+  background-size: 400% 400%;
+  animation: gradientShift 10s ease infinite;
+  text-align: center;
+  padding: 20px;
+  color: white;
+  font-weight: 500;
+  margin-top: 40px;
+  box-shadow: 0 -5px 30px rgba(0,0,0,0.5);
+}
+
+footer p {
+  text-shadow:
+    0 0 5px #ff004c,
+    0 0 10px #ff66c4,
+    0 0 20px #00ffe0;
 }
